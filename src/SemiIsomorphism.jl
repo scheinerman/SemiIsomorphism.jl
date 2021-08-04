@@ -12,7 +12,7 @@ include("RPG.jl")
 
 ###############################################################################
 
-export semi_iso
+export semi_iso, is_semi_iso, semi_auto, auto, semi_mates, semi_auto_1
 
 """
     semi_iso(G,H)
@@ -77,8 +77,11 @@ function is_semi_iso(G::SimpleGraph, H::SimpleGraph)::Bool
     return true
 end
 
+"""
+    semi_iso_1(G,H)
 
-
+One sided semi-isomorphism.
+"""
 function semi_iso_1(A::Matrix, B::Matrix)
     n, c = size(A)
     nn, cc = size(B)

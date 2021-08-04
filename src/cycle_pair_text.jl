@@ -1,5 +1,8 @@
-using SemiIsomorphism
-using LinearAlgebraX
+using SemiIsomorphism, ProgressMeter, Permutations, SimpleDrawing
+using LinearAlgebraX, SimpleGraphs, ChooseOptimizer, Gurobi, SimpleGraphAlgorithms, SimpleTools
+
+use_Gurobi()
+
 
 
 """
@@ -10,7 +13,7 @@ Find the semi-isomorphism between 2C_n and C_{2n}.
 function cycle_pair(n::Int)
     A = adjacency(Cycle(n))
     A = dcat(A, A)
-    d = make_allow(A)
+    d = SemiIsomorphism.make_allow(A)
     perms = RPG(2n, d)
 
     np = length(perms)
@@ -20,7 +23,7 @@ function cycle_pair(n::Int)
     good_p = Permutation(2n).data
     for p in perms
         B = A[:, p]
-        if is_adjacency(B)
+        if SemiIsomorphism.is_adjacency(B)
             H = SimpleGraph(B)
             if is_connected(H)
                 good_p = p
