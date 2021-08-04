@@ -1,18 +1,10 @@
-# GraphTheory()
-
-
-
-module SemiIsomorphism
-
-using SimpleGraphs, SimpleGraphAlgorithms, ShowSet
+GraphTheory()
 using Combinatorics, Permutations, JuMP, Gurobi, LinearAlgebra, ProgressMeter
-# using SimpleGraphRepresentations, SimpleTools
+using SimpleGraphRepresentations, SimpleTools
 
 include("RPG.jl")
 
 ###############################################################################
-
-export semi_iso
 
 """
     semi_iso(G,H)
@@ -243,8 +235,3 @@ function example_maker(G::SimpleGraph, emb::Bool = false)
     A = adjacency(G)
     return example_maker(A, emb)
 end
-
-
-
-
-end # module
