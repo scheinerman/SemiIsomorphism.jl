@@ -1,5 +1,6 @@
 using SemiIsomorphism, ProgressMeter, Permutations, SimpleDrawing
-using LinearAlgebraX, SimpleGraphs, ChooseOptimizer, Gurobi, SimpleGraphAlgorithms, SimpleTools
+using LinearAlgebraX,
+    SimpleGraphs, ChooseOptimizer, Gurobi, SimpleGraphAlgorithms, SimpleTools
 
 use_Gurobi()
 

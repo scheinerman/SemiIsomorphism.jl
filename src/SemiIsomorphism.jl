@@ -4,7 +4,7 @@
 
 module SemiIsomorphism
 
-using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer
+using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer, SimpleTools
 using Combinatorics, Permutations, JuMP, Gurobi, LinearAlgebra, ProgressMeter
 # using SimpleGraphRepresentations, SimpleTools
 
