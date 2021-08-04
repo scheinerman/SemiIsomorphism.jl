@@ -1,0 +1,4 @@
+name = "SemiIsomorphism"
+uuid = "58dec576-be62-4425-a036-65750503c969"
+authors = ["Ed Scheinerman <ers@jhu.edu>"]
+version = "0.1.0"
