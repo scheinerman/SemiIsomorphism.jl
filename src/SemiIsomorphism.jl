@@ -4,7 +4,7 @@
 
 module SemiIsomorphism
 
-using SimpleGraphs, SimpleGraphAlgorithms, ShowSet
+using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer
 using Combinatorics, Permutations, JuMP, Gurobi, LinearAlgebra, ProgressMeter
 # using SimpleGraphRepresentations, SimpleTools
 
@@ -70,7 +70,7 @@ returns `true` is the graphs are semi-isomorphic.
 """
 function is_semi_iso(G::SimpleGraph, H::SimpleGraph)::Bool
     try
-        semi_iso(G,H)
+        semi_iso(G, H)
     catch
         return false
     end
@@ -179,7 +179,7 @@ Find other graphs that are semi-isomorphic to `G`. Optional named arguments:
 * stopper (`false`): Stop at first match different from `G`
 * uhash_check (`true`): Skip presumably isomorphic graphs found
 """
-function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool=true)
+function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = true)
     A = adjacency(G)
     n = NV(G)
 
@@ -244,7 +244,7 @@ function example_maker(G::SimpleGraph, emb::Bool = false)
     return example_maker(A, emb)
 end
 
-
+include("frac_iso.jl")
 
 
 end # module

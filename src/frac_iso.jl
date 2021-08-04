@@ -1,5 +1,6 @@
-using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer, JuMP, Gurobi
+# using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer, JuMP, Gurobi
 
+export frac_iso, frac_iso012, split012
 
 """
     frac_iso(G,H)

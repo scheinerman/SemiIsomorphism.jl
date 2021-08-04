@@ -1,8 +1,6 @@
 # Restricted Permutation Generator
 
-using Combinatorics, ShowSet
-
-
+export RPG
 
 """
     RPG(n::Int, allow::Dict{Int,Set{Int}})
