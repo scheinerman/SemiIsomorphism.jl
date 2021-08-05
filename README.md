@@ -1,2 +1,2 @@
 # SemiIsomorphism
-Research code for looking at semi-isomophisms of graphs.
+Research code for looking at semi-isomophisms of graphs. Private repository.
