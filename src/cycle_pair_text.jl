@@ -5,7 +5,6 @@ using LinearAlgebraX,
 use_Gurobi()
 
 
-
 """
     cycle_pair(n::Int)
 
