@@ -186,20 +186,19 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
     A = adjacency(G)
     n = NV(G)
 
-
     list = SimpleGraph{Int}[]
     hashes = UInt[]
 
     push!(list, relabel(G))
 
-    print("Generating allowable permutations ... ")
+    @info "Generating allowable permutations ... "
     allow = make_allow(A)
 
 
     push!(hashes, uhash(G))
     good_perms = RPG(n, allow)
 
-    println("There are $(length(good_perms)) permutations to consider")
+    @info "There are $(length(good_perms)) permutations to consider"
 
     PM = Progress(length(good_perms))
 
@@ -248,6 +247,6 @@ function example_maker(G::SimpleGraph, emb::Bool = false)
 end
 
 include("frac_iso.jl")
-
+include("one_side_group.jl")
 
 end # module
