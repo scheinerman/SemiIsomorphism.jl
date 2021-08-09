@@ -8,7 +8,7 @@ using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer, SimpleTools
 using Combinatorics, Permutations, JuMP, Gurobi, LinearAlgebra, ProgressMeter
 # using SimpleGraphRepresentations, SimpleTools
 
-include("RPG.jl")
+# include("RPG.jl")
 
 ###############################################################################
 
@@ -175,6 +175,26 @@ List out all the automorphisms of `G`.
 """
 auto(G::SimpleGraph) = auto(adjacency(G))
 
+
+"""
+    make_allow(A::Matrix)
+
+Given a matrix, create an "allow" dictionary where the 
+allowed values for key `k` are the indices of the zeros 
+in row `k`.
+"""
+function make_allow(A::Matrix)
+    r, c = size(A)
+    allow = Dict{Int,Vector{Int}}()
+
+    for i = 1:r
+        row = A[i, :]
+        allow[i] = findall(t -> t == 0, row)
+    end
+    return allow
+end
+
+
 """
     semi_mates(G::SimpleGraph)
 
@@ -191,23 +211,27 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
 
     push!(list, relabel(G))
 
-    @info "Generating allowable permutations ... "
+    @info "Generating allowable permutations"
     allow = make_allow(A)
 
 
     push!(hashes, uhash(G))
-    good_perms = RPG(n, allow)
+    good_perms = Permutations.iter_perms(allow)
 
-    @info "There are $(length(good_perms)) permutations to consider"
+    count = 0
+    ticker = 1000
 
-    PM = Progress(length(good_perms))
 
-    for p in RPG(n, allow)
-        next!(PM)
+    for p in good_perms
+        count += 1
+        if count%ticker == 0
+            print(".")
+        end
         B = A[:, p]
         if B != B'
             continue
         end
+        print("*")
         H = SimpleGraph(B)
         uH = uhash(H)
 
@@ -219,8 +243,9 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
                 return H
             end
         end
-
     end
+    println()
+    @info "We considered $count permutations"
     return list
 
 end
