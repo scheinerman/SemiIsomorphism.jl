@@ -1,6 +1,3 @@
-# GraphTheory()
-
-
 
 module SemiIsomorphism
 
@@ -24,9 +21,21 @@ adjacency matrices of `G` and `H` respectively.
 function semi_iso(G::SimpleGraph, H::SimpleGraph)
     A = adjacency(G)
     B = adjacency(H)
+
+    if !semi_iso_quick_check(G, H)
+        error("These graphs are not semi-isomorphic")
+    end
+
     return semi_iso(A, B)
 end
 
+function semi_iso_quick_check(G::SimpleGraph, H::SimpleGraph)
+    NV(G) == NV(H) &&
+        NE(G) == NE(H) &&
+        deg(G) == deg(H) &&
+        abs(detx(G)) == abs(detx(H)) &&
+        permanent(G) == permanent(H)
+end
 
 function semi_iso(A::Matrix, B::Matrix)
     n, c = size(A)
@@ -224,14 +233,14 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
 
     for p in good_perms
         count += 1
-        if count%ticker == 0
+        if count % ticker == 0
             print(".")
         end
         B = A[:, p]
         if B != B'
             continue
         end
-        print("*")
+        println("\n", Permutation(p))
         H = SimpleGraph(B)
         uH = uhash(H)
 
@@ -273,5 +282,6 @@ end
 
 include("frac_iso.jl")
 include("one_side_group.jl")
+include("invariants.jl")
 
 end # module
