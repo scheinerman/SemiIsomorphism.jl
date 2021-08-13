@@ -238,6 +238,7 @@ function semi_mates(
     count = 0
     ticker = 1000
 
+    verbose && println("each dot is $ticker permutations")
 
     for p in good_perms
         count += 1
