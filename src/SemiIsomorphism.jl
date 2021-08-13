@@ -210,8 +210,14 @@ end
 Find other graphs that are semi-isomorphic to `G`. Optional named arguments:
 * stopper (`false`): Stop at first match different from `G`
 * uhash_check (`true`): Skip presumably isomorphic graphs found
+* verbose (`true`): Show stuff going on
 """
-function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = true)
+function semi_mates(
+    G::SimpleGraph;
+    stopper::Bool = false,
+    uhash_check::Bool = true,
+    verbose::Bool = true,
+)
     A = adjacency(G)
     n = NV(G)
 
@@ -220,7 +226,9 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
 
     push!(list, relabel(G))
 
-    @info "Generating allowable permutations"
+    if verbose
+        @info "Generating allowable permutations"
+    end
     allow = make_allow(A)
 
 
@@ -233,14 +241,16 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
 
     for p in good_perms
         count += 1
-        if count % ticker == 0
+        if verbose && count % ticker == 0
             print(".")
         end
         B = A[:, p]
         if B != B'
             continue
         end
-        println("\n", Permutation(p))
+        if verbose
+            println("\n", Permutation(p))
+        end
         H = SimpleGraph(B)
         uH = uhash(H)
 
@@ -248,13 +258,15 @@ function semi_mates(G::SimpleGraph; stopper::Bool = false, uhash_check::Bool = t
             push!(list, H)
             push!(hashes, uH)
             if stopper
-                println("Quick stop")
+                verbose && println("Quick stop")
                 return H
             end
         end
     end
-    println()
-    @info "We considered $count permutations"
+    if verbose
+        println()
+        @info "We considered $count permutations"
+    end
     return list
 
 end
