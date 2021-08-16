@@ -1,7 +1,7 @@
 using LinearAlgebraX, LinearAlgebra
 
 import LinearAlgebraX: permanent, detx
-import LinearAlgebra: det
+import LinearAlgebra: det, svd
 
 permanent(G::SimpleGraph) = permanent(adjacency(G))
 det(G::SimpleGraph) = det(adjacency(G))
@@ -22,3 +22,6 @@ Return the maximum eigenvalue of `G`'s adjacency matrix.
 maxeig(G::SimpleGraph) = maxeig(adjacency(G))
 
 export maxeig
+
+svd(G::SimpleGraph) = svdvals(adjacency(G))
+export svd
