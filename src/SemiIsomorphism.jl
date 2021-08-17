@@ -296,5 +296,6 @@ end
 include("frac_iso.jl")
 include("one_side_group.jl")
 include("invariants.jl")
+include("make_graph.jl")
 
 end # module
