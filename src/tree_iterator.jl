@@ -58,3 +58,19 @@ function find_semi_iso_pair(list::Vector{SimpleGraph{T}}) where {T}
     println("No pair found")
     nothing
 end
+
+
+
+
+function find_frac_iso_pair(list::Vector{SimpleGraph{T}}) where {T}
+    nG = length(list)
+    for j = 1:nG-1
+        for k = j+1:nG
+            if is_fiso(TT[j], TT[k])
+                return TT[j], TT[k]
+            end
+        end
+    end
+    println("No pair found")
+    nothing
+end

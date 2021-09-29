@@ -51,6 +51,16 @@ function frac_iso(A::Matrix, B::Matrix)
 end
 
 
+function is_fiso(G::SimpleGraph, H::SimpleGraph)::Bool
+    try
+        f = frac_iso(G,H)
+        return true
+    catch
+        return false
+    end
+    false
+end
+
 
 """
     frac_iso012(G,H) 
