@@ -13,11 +13,11 @@ function one_side_group(G::SimpleGraph)::Set{Permutation}
     @info "There are $(length(perms)) permutations to consider"
     PM = Progress(length(perms))
 
-    for p in perms 
+    for p in perms
         next!(PM)
-        B = A[p,:]
+        B = A[p, :]
         if is_adjacency(B)
-            push!(result,Permutation(p))
+            push!(result, Permutation(p))
         end
     end
 
