@@ -1,11 +1,8 @@
-
 module SemiIsomorphism
 
 using SimpleGraphs, SimpleGraphAlgorithms, ChooseOptimizer, SimpleTools
 using Combinatorics, Permutations, JuMP, Gurobi, LinearAlgebra, ProgressMeter
-# using SimpleGraphRepresentations, SimpleTools
 
-# include("RPG.jl")
 
 ###############################################################################
 
@@ -293,7 +290,7 @@ function example_maker(G::SimpleGraph, emb::Bool = false)
     return example_maker(A, emb)
 end
 
-include("frac_iso.jl")
+# include("frac_iso.jl")
 include("one_side_group.jl")
 include("invariants.jl")
 include("make_graph.jl")
