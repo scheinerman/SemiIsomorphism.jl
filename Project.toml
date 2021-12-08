@@ -1,7 +1,7 @@
 name = "SemiIsomorphism"
 uuid = "58dec576-be62-4425-a036-65750503c969"
 authors = ["Ed Scheinerman <ers@jhu.edu>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Cbc = "9961bab8-2fa3-5c5a-9d89-47fab24efd76"
@@ -23,7 +23,7 @@ LinearAlgebraX = "9b3f67b0-2d00-526e-9884-9e4938f8fb88"
 Cbc = "0.4, 0.5, 0.6, 0.7"
 ChooseOptimizer = "0.1"
 Combinatorics = "1"
-JuMP = "0.18, 0.19, 0.20, 0.21"
+JuMP = "0.18, 0.19, 0.20, 0.21, 0.22"
 SimpleGraphAlgorithms = "0.4"
 SimpleGraphs = "0.5, 0.6, 0.7"
 julia = "1"
